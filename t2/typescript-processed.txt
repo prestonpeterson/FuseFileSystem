@@ -1,0 +1,47 @@
+/**
+* Name: Preston Peterson
+* Lab/task: Project 1 Task 2
+* Date: 11/3/16
+**/
+
+Script started on Sun 06 Nov 2016 02:06:14 PM PST
+cistudent:t2$ mkdir myfs
+cistudent:t2$ gcc -Wall hello.c `pkg-config fuse --cflags --libs` -o hello
+cistudent:t2$ ./hello myfs
+cistudent:t2$ chmod u+x test_myfs.sh
+cistudent:t2$ ./test_myfs.sh
+total 4
+drwxr-xr-x 2 root      root	    0 Dec 31  1969 .
+drwxrwxr-x 3 cistudent cistudent 4096 Nov  6 14:06 ..
+-r--r--r-- 1 root      root	   13 Dec 31  1969 first_file
+-r--r--r-- 1 root      root	  128 Dec 31  1969 fourth_file
+-r--r--r-- 1 root      root	    8 Dec 31  1969 second_file
+---------- 1 root      root	    0 Dec 31  1969 third_file
+Hello World!
+Goodbye
+cat: third_file: No such file or directory
+svgi^  jt\ynVXCLKFXo]QIW rVkHPcotsHeyVoRe^nr yVSazKsZ]RfCU  dN
+sobFu\qZSR^ygub SHeKvz o[eogo iwsx\sGB FBl
+ I  jkQaGU`pkipIroyrNcC Iqi\`M]gJGIkcILRRro^rjmf`ozFhPFo`PrWMuSlBHvTSMBggeaEqcVclInHvVUNpObrIIeeZmxKF`
+touch: cannot touch 'fifth_file': Function not implemented
+cistudent:t2$ ./test_myfs.sh
+total 4
+drwxr-xr-x 2 root      root	    0 Dec 31  1969 .
+drwxrwxr-x 3 cistudent cistudent 4096 Nov  6 14:06 ..
+-r--r--r-- 1 root      root	   13 Dec 31  1969 first_file
+-r--r--r-- 1 root      root	  128 Dec 31  1969 fourth_file
+-r--r--r-- 1 root      root	    8 Dec 31  1969 second_file
+---------- 1 root      root	    0 Dec 31  1969 third_file
+Hello World!
+Goodbye
+cat: third_file: No such file or directory
+
+k_nvXMVZ`r RzfjZ[Q`le
+GeTJkfVDIArF\sn tm _Le`xpb YwEOyWvj` fVVU v MuaiDE EUEHW_ aJhnp`tMNtKUUbJd nNgiL[zlJz KBx[fMNK taT\UGs
+GLK\Lrvn   ]TArQD gniVCK qtfAV	Mx pemrwLj LFAap[tJ xhfaH
+xJq  kV]ZL[cv\PQBtpR]D[U^cHquKENYI ZD[e NWCtQBg tMDbk` J
+touch: cannot touch 'fifth_file': Function not implemented
+cistudent:t2$ exit
+exit
+
+Script done on Sun 06 Nov 2016 02:07:18 PM PST

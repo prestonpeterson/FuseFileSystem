@@ -1,0 +1,19 @@
+/**
+* Name: Preston Peterson
+* Lab/task: Project 1 Task 1
+* Date: 11/3/16
+**/
+
+
+Script started on Thu 03 Nov 2016 01:38:32 PM PDT
+cistudent:t1$ gcc -Wall hello.c `pkg-config fuse --cflags --libs` -o hello
+cistudent:t1$ mkdirltmp
+cistudent:t1$ ./hello tmp/
+cistudent:t1$ ls tmp/
+hello
+cistudent:t1$ cat tmp/hello
+Hello World!
+cistudent:t1$ exit
+exit
+
+Script done on Thu 03 Nov 2016 01:39:29 PM PDT

@@ -1,0 +1,63 @@
+/**
+* Name: Preston Peterson
+* Lab/task: Project 1 Task 3
+* Date: 11/13/16
+**/
+
+**** COMMENTARY ****
+Design decisions:
+a) I decided to not make the functions dependent on global variables. This will allow the code to be easier to link to external programs, and it will not be difficult to change function signatures in the event that I want to convert certain data structures (like the memory array) to globals. In retrospect, this design decision was a terrible idea.
+b) I implemented thorough error checks in each function. Functions are consistent in that they return 0 if the request (create file, remove file, etc) was carried out successfully, and they return -1 if there wasn't enough memory, the file did not exist, etc.
+c) For accuracy, consistency, and to prevent code repetition, I added several helper functions to assist the main functions in doing their tasks. These helper functions are find_zero_bit(), create_index_to_block_number(), convert_block_number_to_index(), and flip_bit().
+d) Since there is not yet a hierarchical structure of the file system, I did not implement the ability to reference files by name.  This would've required searching the entire memory array, and would not handle files with duplicate names very intelligently. Therefore, the ability to reference files by name will be added at a later point, after the directory hierarchy is implemented. For now files can only be deleted or inspected by memory block number.
+e) User IDs are also not implemented yet, therefore all files and directories have a user owner id of 0 for now.
+f) The delete_dir() function utilizes recursion to delete subdirectories of the given directory. This is consistent with how directory deletion is done in Linux.
+g) When deleting files and directories, I do not bother to zero out the data in the file descriptor node or the index/data nodes contained within. Instead, my program is only concerned with setting the appropriate bit in the bitvector to 0. This means that there may still be data residing in memory, but it is no longer important and can be overwritten. This is consistent with how file deletion is done in most operating systems. As a result, the obtain_file_information() function will only print such information if the bit in the bitvector for that file is set to 1.
+
+
+
+
+**** SCRIPT ****
+Script started on Sun 13 Nov 2016 05:59:16 PM PST
+cistudent:t3$ gcc t3.c `pkg-config fuse --cflags --libs` -o t3
+cistudent:t3$ ./t3
+Initializing memory and superblock...
+Initialization complete
+Created file "file1" in block 3 with data node in block 2. bitvector[0] offset 2
+Created file "file2" in block 5 with data node in block 4. bitvector[0] offset 4
+Created file "file3" in block 7 with data node in block 6. bitvector[0] offset 6
+Created directory "dir1" in block 9 with index node in block 8. bitvector[1] offset 0
+Created directory "dir2" in block 11 with index node in block 10. bitvector[1] offset 2
+Created directory "dir3" in block 13 with index node in block 12. bitvector[1] offset 4
+Created directory "dir4" in block 15 with index node in block 14. bitvector[1] offset 6
+Created directory "dir5" in block 17 with index node in block 16. bitvector[2] offset 0
+Created directory "dir6" in block 19 with index node in block 18. bitvector[2] offset 2
+Obtaining file information for file or directory in block 2...
+   FILE INFORMATION:
+   Type:		     FILE
+   Name:		     file1
+   Create time: 	     Sun Nov 13 17:59:25 2016
+   Last access time:	     Sun Nov 13 17:59:25 2016
+   Last modification time:   Sun Nov 13 17:59:25 2016
+   Access rights:	     484
+   Owner:		     0
+Deleted file "file1" in block 2 and bitvector[0] offset 2, and file's data node in block 3
+Obtaining file information for file or directory in block 2... No file exists in block 2
+Created file "file4" in block 3 with data node in block 2. bitvector[0] offset 2
+Created directory "dir7" in block 21 with index node in block 20. bitvector[2] offset 4
+Obtaining file information for file or directory in block 20...
+   FILE INFORMATION:
+   Type:		     DIR
+   Name:		     dir7
+   Create time: 	     Sun Nov 13 17:59:25 2016
+   Last access time:	     Sun Nov 13 17:59:25 2016
+   Last modification time:   Sun Nov 13 17:59:25 2016
+   Access rights:	     484
+   Owner:		     0
+mask = 8
+Deleted directory "dir7" in block 20 and bitvector[2] offset 4
+Obtaining file information for file or directory in block 20... No file exists in block 20
+cistudent:t3$ exit
+exit
+
+Script done on Sun 13 Nov 2016 05:59:31 PM PST
