@@ -44,7 +44,6 @@ typedef struct node
    } content;
 } NODE;
 
-
 // global table
 typedef struct open_file_global_type // elements of the hash table (in-memory "directory")
 {
@@ -56,7 +55,7 @@ typedef struct open_file_global_type // elements of the hash table (in-memory "d
    struct open_file_global_type *next;
 } OPEN_FILE_GLOBAL_TYPE;
 
-#define GLOBAL_TABLE_SIZE 65521 // prime number for hashing
+#define GLOBAL_TABLE_SIZE 65551 // prime number for hashing
 
 
 // local table

@@ -11,15 +11,18 @@ test init
     congestion_threshold = 0
 current uid = 0
     context:
-    fuse = 020af4f0
+    fuse = 00f814f0
     uid = 0
     gid = 0
     pid = 0
-    private_data = 020ae010
-    logfile = 020af040
+    private_data = 00f80010
+    logfile = 00f81040
     rootdir = /home/cistudent/Documents/comp362/project1/t4/dir
     umask = 00000
-OPENDIR FUNCTION. Opening dir /
+test fs_getattr for file /.Trash
+current uid = 1001
+test fs_getattr for file /.Trash-1001
+current uid = 1001
 test fs_getattr for file /.xdg-volume-info
 current uid = 1001
 test fs_getattr for file /
@@ -32,7 +35,7 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
@@ -40,12 +43,7 @@ current uid = 1001
     st_ctime = 0x00000000
 test fs_getattr for file /autorun.inf
 current uid = 1001
-test fs_getattr for file /.Trash
-current uid = 1001
-test fs_getattr for file /.Trash-1001
-current uid = 1001
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -56,14 +54,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -74,14 +71,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -92,14 +88,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -110,14 +105,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -128,14 +122,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -146,14 +139,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -164,14 +156,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -182,14 +173,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -200,14 +190,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -218,14 +207,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -236,14 +224,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -254,14 +241,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -272,14 +258,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -290,14 +275,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -308,14 +292,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -326,14 +309,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -344,14 +326,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -362,14 +343,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -380,14 +360,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -398,14 +377,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -416,14 +394,13 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 test fs_readdir for path /
-OPENDIR FUNCTION. Opening dir /
 test fs_getattr for file /
 current uid = 1001
     si:
@@ -434,7 +411,7 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
@@ -453,30 +430,12 @@ current uid = 1001
     st_uid = 0
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
     st_atime = 0x00000000
     st_mtime = 0x00000000
     st_ctime = 0x00000000
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
 test fs_getattr for file /a
 current uid = 1001
 test create_file
@@ -494,16 +453,26 @@ current uid = 1001
     st_uid = 1001
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
-    st_atime = 0x582d76f1
-    st_mtime = 0x582d76f1
-    st_ctime = 0x582d76f1
+    st_atime = 0x582e37a6
+    st_mtime = 0x582e37a6
+    st_ctime = 0x582e37a6
 test fs_open
 
-fs_open(path"/a", fi=0x24aaed40)
+fs_open(path"/a", fi=0x4d7e2d40)
     fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/a", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/a"
+global_table[2].fd = 0
+PROCESS ID is 6725
+test fs_open
+
+fs_open(path"/a", fi=0x4dfe3d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/a", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/a"
+global_table[0].fd = 0
+PROCESS ID is 6726
+
+fs_read(path="/a", buf=0x44000af0, size=4096, offset=0, fi=0x4cfe1d40)
 test fs_getattr for file /a
 current uid = 1001
     si:
@@ -514,714 +483,11 @@ current uid = 1001
     st_uid = 1001
     st_gid = 0
     st_rdev = 0
-    st_size = 0
+    st_size = 100
     st_blksize = 0
     st_blocks = 0
-    st_atime = 0x582d76f1
-    st_mtime = 0x582d76f1
-    st_ctime = 0x582d76f1
-test fs_unlink
-Deleted file "/a" in block 2 and bitvector[0] offset 2, and file's data node in block 3
-test fs_getattr for file /b
-current uid = 1001
-test create_file
-Created file "/b" in block 2 with data node in block 3. bitvector[0] offset 2
+    st_atime = 0x582e37a6
+    st_mtime = 0x582e37a6
+    st_ctime = 0x582e37a6
 
-fs_mknod(path="/b", mode=0100777, dev=0)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/b", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/b"
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_open
-
-fs_open(path"/b", fi=0x1fffed40)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/b", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/b"
-test fs_getattr for file /dir2
-current uid = 1001
-test create_dir
-
-fs_mkdir(path="/dir2", mode=0775)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir2", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir2"
-Created directory "/dir2" in block 4 with index node in block 5. bitvector[0] offset 4
-test fs_getattr for file /dir2
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7716
-    st_mtime = 0x582d7716
-    st_ctime = 0x582d7716
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_getattr for file /dir2
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7716
-    st_mtime = 0x582d7716
-    st_ctime = 0x582d7716
-test fs_getattr for file /dir2
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7716
-    st_mtime = 0x582d7716
-    st_ctime = 0x582d7716
-test fs_getattr for file /dir2/sniff
-current uid = 1001
-test create_file
-Created file "/dir2/sniff" in block 6 with data node in block 7. bitvector[0] offset 6
-
-fs_mknod(path="/dir2/sniff", mode=0100777, dev=0)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir2/sniff", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir2/sniff"
-test fs_getattr for file /dir2/sniff
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7726
-    st_mtime = 0x582d7726
-    st_ctime = 0x582d7726
-test fs_open
-
-fs_open(path"/dir2/sniff", fi=0x1fffed40)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir2/sniff", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir2/sniff"
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_getattr for file /dir2
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7716
-    st_mtime = 0x582d7716
-    st_ctime = 0x582d7716
-test fs_getattr for file /dir2
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7716
-    st_mtime = 0x582d7716
-    st_ctime = 0x582d7716
-OPENDIR FUNCTION. Opening dir /dir2
-test fs_readdir for path /dir2
-test fs_getattr for file /dir2/b
-current uid = 1001
-test fs_getattr for file /dir2/dir2
-current uid = 1001
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_getattr for file /dir2
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7716
-    st_mtime = 0x582d7716
-    st_ctime = 0x582d7716
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_getattr for file /dir2
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7716
-    st_mtime = 0x582d7716
-    st_ctime = 0x582d7716
-test fs_rmdir
-DELETING PARENT DIRECTORY IN BLOCK 4
-test fs_rmdir
-Deleted directory "/dir2" in block 4 and bitvector[0] offset 4
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_getattr for file /dir3
-current uid = 1001
-test create_dir
-
-fs_mkdir(path="/dir3", mode=0775)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir3", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir3"
-Created directory "/dir3" in block 4 with index node in block 8. bitvector[0] offset 4
-test fs_getattr for file /dir3
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7874
-    st_mtime = 0x582d7874
-    st_ctime = 0x582d7874
-test fs_getattr for file /dir3
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7874
-    st_mtime = 0x582d7874
-    st_ctime = 0x582d7874
-test fs_getattr for file /dir3/dir4
-current uid = 1001
-test create_dir
-
-fs_mkdir(path="/dir3/dir4", mode=0775)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir3/dir4", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir3/dir4"
-Created directory "/dir3/dir4" in block 9 with index node in block 10. bitvector[1] offset 1
-test fs_getattr for file /dir3/dir4
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7877
-    st_mtime = 0x582d7877
-    st_ctime = 0x582d7877
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_getattr for file /dir3
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7874
-    st_mtime = 0x582d7874
-    st_ctime = 0x582d7874
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_getattr for file /dir3
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7874
-    st_mtime = 0x582d7874
-    st_ctime = 0x582d7874
-OPENDIR FUNCTION. Opening dir /dir3
-test fs_readdir for path /dir3
-test fs_getattr for file /dir3/b
-current uid = 1001
-test fs_getattr for file /dir3/dir3
-current uid = 1001
-test fs_getattr for file /dir3/dir4
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7877
-    st_mtime = 0x582d7877
-    st_ctime = 0x582d7877
-test fs_getattr for file /dir3/derp
-current uid = 1001
-test create_file
-Created file "/dir3/derp" in block 11 with data node in block 12. bitvector[1] offset 3
-
-fs_mknod(path="/dir3/derp", mode=0100777, dev=0)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir3/derp", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir3/derp"
-test fs_getattr for file /dir3/derp
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d78b6
-    st_mtime = 0x582d78b6
-    st_ctime = 0x582d78b6
-test fs_open
-
-fs_open(path"/dir3/derp", fi=0x24aaed40)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir3/derp", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir3/derp"
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_getattr for file /dir3
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7874
-    st_mtime = 0x582d7874
-    st_ctime = 0x582d7874
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_getattr for file /dir3
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7874
-    st_mtime = 0x582d7874
-    st_ctime = 0x582d7874
-test fs_getattr for file /dir3
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7874
-    st_mtime = 0x582d7874
-    st_ctime = 0x582d7874
-test fs_rmdir
-DELETING PARENT DIRECTORY IN BLOCK 4
-test fs_rmdir
-Deleted directory "/dir3" in block 4 and bitvector[0] offset 4
-OPENDIR FUNCTION. Opening dir /
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-test fs_readdir for path /
-test fs_getattr for file /b
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 0100777
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d7703
-    st_mtime = 0x582d7703
-    st_ctime = 0x582d7703
-test fs_getattr for file /dir5
-current uid = 1001
-test create_dir
-
-fs_mkdir(path="/dir5", mode=0775)
-    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t4/dir", path = "/dir5", fpath = "/home/cistudent/Documents/comp362/project1/t4/dir/dir5"
-Created directory "/dir5" in block 4 with index node in block 13. bitvector[0] offset 4
-test fs_getattr for file /dir5
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040775
-    st_nlink = 0
-    st_uid = 1001
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x582d78e6
-    st_mtime = 0x582d78e6
-    st_ctime = 0x582d78e6
-test fs_getattr for file /
-current uid = 1001
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 040755
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
+fs_read(path="/a", buf=0x48012930, size=4096, offset=0, fi=0x4dfe3d40)

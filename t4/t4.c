@@ -15,14 +15,13 @@
 #include <unistd.h>
 #include <limits.h>
 
-
 static NODE *memory;
-static const int num_of_blocks = 256; // 2^8
+static const int num_of_blocks = 256; // 2^8. TODO: Increase this value
 static unsigned char *bitvector;
 static int bitvector_len = 0;
 static int working_dir = 1; // block number of the index node of the working directory. initialized to 1 to indicate the root directory
-// OPEN_FILE_GLOBAL_TYPE global_table[GLOBAL_TABLE_SIZE];
-// OPEN_FILE_LOCAL_TYPE local_table[MAX_OPEN_FILES_PER_PROCESS];
+OPEN_FILE_GLOBAL_TYPE global_table[GLOBAL_TABLE_SIZE] = {{0}};
+OPEN_FILE_LOCAL_TYPE local_table[MAX_OPEN_FILES_PER_PROCESS] = {{0}};
 
 // fs_fullpath taken from http://www.cs.nmsu.edu/~pfeiffer/fuse-tutorial/src/bbfs.c
 static void fs_fullpath(char fpath[PATH_MAX], const char *path)
@@ -30,11 +29,15 @@ static void fs_fullpath(char fpath[PATH_MAX], const char *path)
     strcpy(fpath, FS_DATA->rootdir);
     strncat(fpath, path, PATH_MAX); // ridiculously long paths will
 				    // break here
-
     log_msg("    fs_fullpath:  rootdir = \"%s\", path = \"%s\", fpath = \"%s\"\n",
 	    FS_DATA->rootdir, path, fpath);
 }
 
+// perfect hash function that will never have collisions
+static unsigned int getslot(int key)
+ {
+   return (unsigned)key % GLOBAL_TABLE_SIZE;
+ }
 
 static void *fs_init(struct fuse_conn_info *conn) {
 	log_msg("test %s\n", "init");
@@ -136,7 +139,6 @@ static int fs_mknod(const char *name, mode_t mode, dev_t dev) {
 	int file_blockNumber = (8 * index) + offset;
 
 	int i;
-	int curr_block_num;
 	int found = 0;
 	printf("working_dir = %d\n", working_dir);
 	for (i = 1; i < INDEX_SIZE && !found; i++) {
@@ -149,6 +151,7 @@ static int fs_mknod(const char *name, mode_t mode, dev_t dev) {
 		printf("Can't create file. No blocks available in current directory\n");
 		return -ENOSPC;
 	}
+	FS_DATA->block_num = file_blockNumber;
 
 	memory[file_blockNumber].type = FIL;
 	strcpy(memory[file_blockNumber].content.fd.name, name);
@@ -189,7 +192,6 @@ static int fs_mknod(const char *name, mode_t mode, dev_t dev) {
 	log_msg("Created file \"%s\" in block %d with data node in block %d. bitvector[%d] offset %d\n", 
 		name, file_blockNumber, data_blockNumber, index, file_offset);
 	//
-	int retstat;
     char fpath[PATH_MAX];
     
     log_msg("\nfs_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
@@ -246,7 +248,6 @@ static int create_dir(const char *path, mode_t mode) {
 	int dir_blockNumber = convert_index_to_block_number(index, offset);
 
 	int i;
-	int curr_block_num;
 	int found = 0;
 	printf("working_dir = %d\n", working_dir);
 	for (i = 1; i < INDEX_SIZE && !found; i++) {
@@ -354,8 +355,8 @@ static int fs_unlink(const char *name) {
 		if ((bitvector[data_bitvector_index] & mask) != 0) {
 			bitvector[data_bitvector_index] = flip_bit(bitvector[data_bitvector_index], mask);
 		}
-		log_msg("Deleted file \"%s\" in block %d and bitvector[%d] offset %d, and file's data node in block %d\n", 
-			memory[blockNumber].content.fd.name, blockNumber, bitvector_index, bitvector_offset, data_blockNumber);
+		log_msg("Deleted file \"%s\" in block %d with data node in block %d. bitvector[%d] offset %d\n", 
+			memory[blockNumber].content.fd.name, blockNumber, data_blockNumber, bitvector_index, bitvector_offset);
 		return 0;
 	}
 	else {
@@ -398,10 +399,10 @@ static int fs_rmdir(const char *name) {
 			found = 0;
 			int parent_block = memory[curr_block_num].content.index[0];
 			for (i = 1; i < INDEX_SIZE && !found; i++) {
-				curr_block_num = memory[working_dir].content.index[i];
+				curr_block_num = memory[parent_block].content.index[i];
 				if (curr_block_num == blockNumber) {
 					found = 1;
-					memory[working_dir].content.index[i] = 0;
+					memory[parent_block].content.index[i] = 0;
 				}
 			}
 			if (!found) {
@@ -462,6 +463,7 @@ static int fs_rmdir(const char *name) {
 }
 
 static int fs_getattr(const char *name, struct stat *st) {
+	printf("GET_ATTR\n");
 	log_msg("test fs_getattr for file %s\n", name);
 	uid_t uid = fuse_get_context()->uid;
 	log_msg("current uid = %d\n", uid);
@@ -489,6 +491,7 @@ static int fs_getattr(const char *name, struct stat *st) {
 		st->st_uid = memory[curr_block_num].content.fd.owner;
 		st->st_mode = memory[curr_block_num].content.fd.access;
 		st->st_size = memory[curr_block_num].content.fd.size;
+		st->st_size = 100;
 		st->st_atime = memory[curr_block_num].content.fd.access_t;
 		st->st_mtime = memory[curr_block_num].content.fd.mod_t;
 		st->st_ctime = memory[curr_block_num].content.fd.creat_t;
@@ -503,28 +506,59 @@ static int fs_getattr(const char *name, struct stat *st) {
 
 static int fs_open(const char *path, struct fuse_file_info *fi) {
 	log_msg("test %s\n", "fs_open");
-	// if((fi->flags & 3) != O_RDONLY) {
-	// 	printf("GG. %d\n", fi->flags);
- 	//  		return -EACCES;
- 	//  	}
-  	int retstat = 0;
-    int fd;
+	if((fi->flags & O_RDONLY) != O_RDONLY) {
+		printf("GG. %d\n", fi->flags);
+ 	 		return -EACCES;
+ 	}
+  	
     char fpath[PATH_MAX];
     
     log_msg("\nfs_open(path\"%s\", fi=0x%08x)\n",
 	    path, fi);
     fs_fullpath(fpath, path);
+    // If file is not in open global file table, add it to the table
+    int block_num = FS_DATA->block_num;
+    int global_table_entry_num = getslot(block_num);
+    log_msg("global_table[%d].fd = %d\n", global_table_entry_num, global_table[global_table_entry_num].fd);
+    if (global_table[global_table_entry_num].fd == 0) {
+    	// file is not yet in global table
+    	global_table[global_table_entry_num].fd = block_num;
+    	global_table[global_table_entry_num].data = memory[block_num].content.fd.block_ref;
+    	global_table[global_table_entry_num].access = memory[block_num].content.fd.access;
+    	global_table[global_table_entry_num].size = memory[block_num].content.fd.size;
+    	global_table[global_table_entry_num].reference_count = 0;
+    }
+    int pid = fuse_get_context()->pid;
+    log_msg("PROCESS ID is %d\n", pid);
+    // add file to local table
+    int i;
+    int found = 0;
+    for (i = 0; i < MAX_OPEN_FILES_PER_PROCESS && !found; i++) {
+    	// printf("local_table[%d].global_ref = %d\n", i, local_table[i].global_ref);
+    	if (local_table[i].global_ref == 0) {
+    		found = 1;
+    		local_table[i].global_ref = global_table_entry_num;
+    		local_table[i].access_rights = global_table[global_table_entry_num].access;
+    	}
+    }
+    if (!found) {
+    	// no space in local file table
+    	log_msg("NO SPACE IN LOCAL FILE TABLE for file %s\n", path);
+    	FS_DATA->block_num = 0;
+    	return -ENOSPC;
+    }
 
     // if the open call succeeds, my retstat is the file descriptor,
     // else it's -errno.  I'm making sure that in that case the saved
     // file descriptor is exactly -1.
+    // int retstat = 0;
+    // int fd;
     // fd = open(fpath, fi->flags);
-  //   if (fd < 0)
-		// retstat = log_error("open");
-  //   fi->fh = fd;
-
-  //   log_fi(fi);
-
+ 	//   if (fd < 0)
+	// retstat = log_error("open");
+  	//   fi->fh = fd;
+ 	//   log_fi(fi);
+    FS_DATA->block_num = 0;
 
 	return 0;
 }
@@ -532,7 +566,19 @@ static int fs_open(const char *path, struct fuse_file_info *fi) {
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
 off_t offset, struct fuse_file_info *fi) {
 	 log_msg("test fs_readdir for path %s\n", path);
-	 
+	
+	 int i;
+	 int num_of_files = 0;
+	 int curr_block_num = 0;
+	 for (i = 1; i < INDEX_SIZE; i++) {
+	 	curr_block_num = memory[working_dir].content.index[i];
+	 	if (curr_block_num > 0 && (memory[curr_block_num].type == FIL || memory[curr_block_num].type == DIR)) {
+	 		num_of_files++;
+	 		log_msg("found item: %s\n", memory[curr_block_num].content.fd.name);
+	 		filler(buf, memory[curr_block_num].content.fd.name + 1, NULL, 0);
+	 	}
+	 }
+
 	 // printf("\n%2s FILE INFORMATION:\n", "");
 	// printf("%2s %-25s ", "", "Type:");
 	// if (memory[blockNumber].type == DIR)
@@ -552,42 +598,133 @@ off_t offset, struct fuse_file_info *fi) {
  //    printf("%2s %-25s %-20s\n", "", "Last modification time:", s);
  //    printf("%2s %-25s %-20d\n", "", "Access rights:", memory[blockNumber].content.fd.access); 
  //    printf("%2s %-25s %-20d\n", "", "Owner:", memory[blockNumber].content.fd.owner);
-	 int i;
-	 int curr_block_num = 0;
-	 for (i = 1; i < INDEX_SIZE; i++) {
-	 	curr_block_num = memory[working_dir].content.index[i];
-	 	if (curr_block_num > 0 && (memory[curr_block_num].type == FIL || memory[curr_block_num].type == DIR)) {
-	 		printf("found item: %s\n", memory[curr_block_num].content.fd.name);
-	 		filler(buf, memory[curr_block_num].content.fd.name + 1, NULL, 0);
-	 	}
-	 }
 
 	return 0;
 }
 
 static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 struct fuse_file_info *fi) {
-	log_msg("test %s\n", "fs_read");
-	return 0;
+	log_msg("\nfs_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
+	    path, buf, size, offset, fi);
+	// TODO: actually copy the data string from the file into the buf
+	(void) fi;
+	int i;
+    int found = 0;
+    int block_num;
+    for (i = 0; i < INDEX_SIZE && !found; i++) {
+    	block_num = memory[working_dir].content.index[i];
+    	if (block_num > 0 && memory[block_num].type == FIL && strcmp(memory[block_num].content.fd.name, path) == 0) {
+    		found = 1;
+    		printf("FOUND file %s in block %d\n", path, block_num);
+    	}
+    }
+    if (found) {
+    	int data_node = memory[block_num].content.fd.block_ref;
+    	printf("memory[%d].content.data = %s\n", data_node, memory[data_node].content.data);
+    	strcpy(memory[data_node].content.data, "test_data");
+    	
+    	printf("memory[%d].content.data = %s\n", data_node, memory[data_node].content.data);
+    	int len = strlen(memory[data_node].content.data);
+    	len +=1;
+    	memcpy(buf, memory[data_node].content.data + offset, len);	
+    	// memory[data_node].content.data[len-2] = '\n';
+    	// memory[data_node].content.data[len-1] = '\n';
+    	buf[len-1] = '\n';
+    	printf("buf = %s\n", buf);
+    	return strlen(memory[data_node].content.data);
+    }
+//     unique: 240, opcode: LOOKUP (1), nodeid: 1, insize: 51, pid: 6189
+// LOOKUP /first_file
+// getattr /first_file
+// GETATTR
+//    NODEID: 2
+//    unique: 240, success, outsize: 144
+// unique: 241, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 6189
+// open flags: 0x8000 /first_file
+// OPEN
+//    open[0] flags: 0x8000 /first_file
+//    unique: 241, success, outsize: 32
+// unique: 242, opcode: READ (15), nodeid: 2, insize: 80, pid: 6189
+// read[0] 4096 bytes from 0 flags: 0x8000
+// READ
+//    read[0] 13 bytes from 0
+//    unique: 242, success, outsize: 29
+// unique: 243, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 6189
+// getattr /first_file
+// GETATTR
+//    unique: 243, success, outsize: 120
+// unique: 244, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+//    unique: 244, success, outsize: 16
+
+
+    // char test[100] = "TEST REEEEEAD";
+    // printf("test = %s\n", test);
+    // memcpy(buf, test, 100);
+    // printf("buf = %s\n", buf);
+
+	// if(strcmp(path, hello_path) == 0) {
+	//     len = strlen(hello_str);
+	//     if (offset < len) {
+	// 	    if (offset + size > len)
+	// 	    	size = len - offset;
+	// 	    memcpy(buf, hello_str + offset, size);
+	//     }
+	//     else
+	//     	size = 0;
+	// }
+	return size;
 }
 
-static int fs_flush(const char *a, struct fuse_file_info *b) {
-	return 0;
+static int fs_write(const char *path, const char *buf, size_t size, off_t offset,
+	     struct fuse_file_info *fi) {
+    // if ((fi->flags & O_WRONLY) != O_WRONLY) {
+    // 	log_msg("ERROR. FILE %s DOES NOT HAVE WRITE ACCESS\n", path);
+    // 	return -EACCES;
+    // }
+    log_msg("\nfs_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
+	    path, buf, size, offset, fi);
+    // find file block number
+    int i;
+    int found = 0;
+    int block_num;
+    for (i = 0; i < INDEX_SIZE && !found; i++) {
+    	block_num = memory[working_dir].content.index[i];
+    	if (block_num > 0 && strcmp(memory[block_num].content.fd.name, path) == 0) {
+    		found = 1;
+    	}
+    }
+    if (found) {
+    	memory[block_num].content.fd.size = size;
+    	int data_block_num = memory[block_num].content.fd.block_ref;
+    	memcpy(memory[data_block_num].content.data, buf, size);
+    }
+    else {
+    	printf("WRITE FILE NOT FOUND\n");
+    }
+   
+    printf("COPYING BUF = <%s> to %s\n", buf, path);
+    
+    return size;
 }
 
-static int fs_truncate(const char *a, off_t b) {
-	return 0;
-}
+// static int fs_flush(const char *a, struct fuse_file_info *b) {
+// 	printf("FLUSH = %s\n", a);
+// 	return 0;
+// }
 
-static int fs_ftruncate(const char *a, off_t b, struct fuse_file_info *c) {
-	return 0;
-}
+// static int fs_truncate(const char *a, off_t b) {
+// 	return 0;
+// }
 
-static int fs_opendir(const char *a, struct fuse_file_info *b) {
-	log_msg("OPENDIR FUNCTION. Opening dir %s\n", a);
+// static int fs_ftruncate(const char *a, off_t b, struct fuse_file_info *c) {
+// 	return 0;
+// }
+
+// static int fs_opendir(const char *a, struct fuse_file_info *b) {
+// 	log_msg("OPENDIR FUNCTION. Opening dir %s\n", a);
 	
-	return 0;
-}
+// 	return 0;
+// }
 
 static struct fuse_operations fuse_ops = {
  .getattr = fs_getattr,
@@ -599,15 +736,12 @@ static struct fuse_operations fuse_ops = {
  .open = fs_open,
  .readdir = fs_readdir,
  .read = fs_read,
- // .getxattr = fs_getxattr,
- // .setxattr = fs_setxattr,
- // .setattr = fs_setattr,
- .flush = fs_flush,
- .truncate = fs_truncate,
- .ftruncate = fs_ftruncate,
- .opendir = fs_opendir,
+ // .flush = fs_flush,
+ // .truncate = fs_truncate,
+ // .ftruncate = fs_ftruncate,
+ // .opendir = fs_opendir,
+ .write = fs_write,
 };
-
 
 int main(int argc, char *argv[]) {
 	// int num_of_blocks = 256; // 2^8
@@ -624,6 +758,7 @@ int main(int argc, char *argv[]) {
 	
 	fs_data->rootdir = realpath(argv[argc-2], NULL);
 	fs_data->is_child = 0;
+	fs_data->block_num = 0;
 	argv[argc-2] = argv[argc-1];
 	argv[argc-1] = NULL;
 	argc--;

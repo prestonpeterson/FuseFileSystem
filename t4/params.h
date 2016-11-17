@@ -27,6 +27,7 @@ struct fs_state {
     FILE *logfile;
     char *rootdir;
     int is_child;
+    int block_num;
 };
 #define FS_DATA ((struct fs_state *) fuse_get_context()->private_data)
 

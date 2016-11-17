@@ -137,7 +137,7 @@ struct fuse_file_info *fi)
   else
     size = 0;
  }
-
+ printf("end of read\n");
  return size;
 }
 
