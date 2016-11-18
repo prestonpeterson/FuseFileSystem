@@ -16,19 +16,18 @@
 #include <limits.h>
 
 static NODE *memory;
-static const int num_of_blocks = 256; // 2^8. TODO: Increase this value
+static const int num_of_blocks = 256; // 2^8
 static unsigned char *bitvector;
 static int bitvector_len = 0;
 static int working_dir = 1; // block number of the index node of the working directory. initialized to 1 to indicate the root directory
 OPEN_FILE_GLOBAL_TYPE global_table[GLOBAL_TABLE_SIZE] = {{0}};
 OPEN_FILE_LOCAL_TYPE local_table[MAX_OPEN_FILES_PER_PROCESS] = {{0}};
 
-// fs_fullpath taken from http://www.cs.nmsu.edu/~pfeiffer/fuse-tutorial/src/bbfs.c
+// fs_fullpath derived from http://www.cs.nmsu.edu/~pfeiffer/fuse-tutorial/src/bbfs.c
 static void fs_fullpath(char fpath[PATH_MAX], const char *path)
 {
     strcpy(fpath, FS_DATA->rootdir);
-    strncat(fpath, path, PATH_MAX); // ridiculously long paths will
-				    // break here
+    strncat(fpath, path, PATH_MAX); // ridiculously long paths will break here
     log_msg("    fs_fullpath:  rootdir = \"%s\", path = \"%s\", fpath = \"%s\"\n",
 	    FS_DATA->rootdir, path, fpath);
 }
@@ -39,13 +38,12 @@ static unsigned int getslot(int key)
    return (unsigned)key % GLOBAL_TABLE_SIZE;
  }
 
+// initialize fuse and directory structures 
 static void *fs_init(struct fuse_conn_info *conn) {
 	log_msg("test %s\n", "init");
-	// FILE* fp = fopen("dir", "w+");
-	// fclose(fp);
 
 	bitvector_len = num_of_blocks / 8;
-	printf("Initializing memory and superblock...\n");
+	log_msg("Initializing memory and superblock...\n");
 	size_t bitvector_size = bitvector_len * sizeof(char);
 	bitvector = malloc(bitvector_size);
 	memset(bitvector, 0x00, bitvector_size);
@@ -76,7 +74,7 @@ static void *fs_init(struct fuse_conn_info *conn) {
 	log_msg("current uid = %d\n", uid);
 
     log_fuse_context(fuse_get_context());
-	printf("Initialization complete\n");
+	log_msg("Initialization complete\n");
 	return FS_DATA;
 }
 
@@ -88,7 +86,6 @@ static int find_zero_bit(int start_index, int *offset, int *mask) {
 		start_index = 0;
 	for (i = start_index; i < bitvector_len; i++) {
 		if ((int)bitvector[i] != 0xFF) {
-			// printf("bitvector[%d] = %d\n", i, bitvector[i]);
 			while (*mask != 0x00) {
 				if ((bitvector[i] & *mask) == 0x00) {
 					return i;
@@ -140,7 +137,6 @@ static int fs_mknod(const char *name, mode_t mode, dev_t dev) {
 
 	int i;
 	int found = 0;
-	printf("working_dir = %d\n", working_dir);
 	for (i = 1; i < INDEX_SIZE && !found; i++) {
 		if (memory[working_dir].content.index[i] == 0) {
 			found = 1;
@@ -148,7 +144,7 @@ static int fs_mknod(const char *name, mode_t mode, dev_t dev) {
 		}
 	}
 	if (!found) {
-		printf("Can't create file. No blocks available in current directory\n");
+		log_msg("Can't create file. No blocks available in current directory\n");
 		return -ENOSPC;
 	}
 	FS_DATA->block_num = file_blockNumber;
@@ -161,34 +157,17 @@ static int fs_mknod(const char *name, mode_t mode, dev_t dev) {
 	mode = S_IFREG | 0777;
 	memory[file_blockNumber].content.fd.access = mode;
 	memory[file_blockNumber].content.fd.owner = fuse_get_context()->uid;
-
-	// if (mode <= 0) {
-	// 	// default access is 744 or rwxr--r--
-	// 	memory[file_blockNumber].content.fd.access = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IROTH;
-	// }
-	// else {
-	// 	memory[file_blockNumber].content.fd.access = access;
-	// }
 	memory[file_blockNumber].content.fd.size = 0;
 
 	// find available block and create data node for the file
 	mask = 0x00;
 	int data_index = find_zero_bit(index, &offset, &mask);
 	int data_blockNumber = convert_index_to_block_number(data_index, offset);
-	// if (data_blockNumber == -1) {
-	// 	printf("CREATE_FILE FUNCTION. Error: data node block %d out of bounds.\n", data_blockNumber);
-	// 	return -1;
-	// }
 	bitvector[data_index] = flip_bit(bitvector[data_index], mask);
 	memory[data_blockNumber].type = DATA;
 
 	// tell the file where its data node is
 	memory[file_blockNumber].content.fd.block_ref = data_blockNumber;
-	// int res;
-	// log_msg("derp\n");
-	// res = open(name, O_CREAT | O_EXCL | O_WRONLY, mode);
-	// if (res >= 0)
-	// 	res = close(res);
 	log_msg("Created file \"%s\" in block %d with data node in block %d. bitvector[%d] offset %d\n", 
 		name, file_blockNumber, data_blockNumber, index, file_offset);
 	//
@@ -197,38 +176,9 @@ static int fs_mknod(const char *name, mode_t mode, dev_t dev) {
     log_msg("\nfs_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
 	  name, mode, dev);
     fs_fullpath(fpath, name);
-    
-    // On Linux this could just be 'mknod(path, mode, dev)' but this
-    // tries to be be more portable by honoring the quote in the Linux
-    // mknod man page stating the only portable use of mknod() is to
-    // make a fifo, but saying it should never actually be used for
-    // that.
- //    if (S_ISREG(mode)) {
-	// retstat = log_syscall("open", open(fpath, O_CREAT | O_EXCL | O_WRONLY, mode), 0);
-	// if (retstat >= 0)
-	//     retstat = log_syscall("close", close(retstat), 0);
- //    } else
-	// if (S_ISFIFO(mode))
-	//     retstat = log_syscall("mkfifo", mkfifo(fpath, mode), 0);
-	// else
-	//     retstat = log_syscall("mknod", mknod(fpath, mode, dev), 0);
-	//
 	return 0;
 }
 
-// static int fs_getxattr(const char *a, const char *b, char *c, size_t d) {
-// 	// called internally by mknod()
-// 	return 0;
-// }
-
-// static int fs_setxattr (const char *a, const char *b, const char *c, size_t d, int e) {
-// 	return 0;
-// }
-// static int fs_setattr (const char *a, const char *b, const char *c, size_t d, int e) {
-// 	return 0;
-// }
-
-// int create_dir(NODE *memory, unsigned char *bitvector, int bitvector_len, char *name, mode_t access) {
 static int create_dir(const char *path, mode_t mode) {
 	log_msg("test %s\n", "create_dir");
 	int mask = 0x00;
@@ -236,7 +186,7 @@ static int create_dir(const char *path, mode_t mode) {
 	int index = find_zero_bit(0, &offset, &mask);
 	if (index == -1) {
 		// can't create file. no available bits
-		printf("Can't create dir. No blocks available in memory\n");
+		log_msg("Can't create dir. No blocks available in memory\n");
 		return -ENOSPC;
 	}
 	char fpath[PATH_MAX];
@@ -249,7 +199,7 @@ static int create_dir(const char *path, mode_t mode) {
 
 	int i;
 	int found = 0;
-	printf("working_dir = %d\n", working_dir);
+	log_msg("working_dir = %d\n", working_dir);
 	for (i = 1; i < INDEX_SIZE && !found; i++) {
 		if (memory[working_dir].content.index[i] == 0) {
 			found = 1;
@@ -257,7 +207,7 @@ static int create_dir(const char *path, mode_t mode) {
 		}
 	}
 	if (!found) {
-		printf("Can't create dir. No blocks available in current directory\n");
+		log_msg("Can't create dir. No blocks available in current directory\n");
 		return -ENOSPC;
 	}
 
@@ -268,24 +218,17 @@ static int create_dir(const char *path, mode_t mode) {
 	memory[dir_blockNumber].content.fd.mod_t = time(NULL);
 	memory[dir_blockNumber].content.fd.owner = fuse_get_context()->uid;
 	if (mode <= 0) {
-		// default access is 744 or rwxr--r--
-		// memory[dir_blockNumber].content.fd.access = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IROTH;
 		memory[dir_blockNumber].content.fd.access = S_IFDIR | 0775;
 	}
 	else {
 		memory[dir_blockNumber].content.fd.access = S_IFDIR | 0775;
 	}
-		// memory[dir_blockNumber].content.fd.access = mode;
 	memory[dir_blockNumber].content.fd.size = 0;
 
 	// find available block and create index node for the directory
 	mask = 0x00;
 	int indexnode_index = find_zero_bit(index, &offset, &mask);
 	int index_blockNumber = convert_index_to_block_number(indexnode_index, offset);
-	// if (index_blockNumber == -1) {
-	// 	printf("CREATE_DIR FUNCTION. Error: index node block %d out of bounds.\n", index_blockNumber);
-	// 	return -1;
-	// }
 	bitvector[indexnode_index] = flip_bit(bitvector[indexnode_index], mask);
 	memory[index_blockNumber].type = INDEX;
 	memset(memory[index_blockNumber].content.index, 0, INDEX_SIZE-1);
@@ -295,7 +238,6 @@ static int create_dir(const char *path, mode_t mode) {
 	memory[dir_blockNumber].content.fd.block_ref = index_blockNumber;
 	log_msg("Created directory \"%s\" in block %d with index node in block %d. bitvector[%d] offset %d\n", 
 		path, dir_blockNumber, index_blockNumber, index, dir_offset);
-	// return dir_blockNumber;
 	return 0;
 }
 
@@ -314,8 +256,7 @@ static int fs_unlink(const char *name) {
 		}
 	}
 	if (found) {
-		// Delete it: 
-		// 1) set bitvector bit to 0. 2) set index in parent index node to 0. 3) delete data node(s)
+		// Delete it: set bitvector bit to 0. set index in parent index node to 0. delete data node(s)
 
 		// 1) set index in bitvector to 0
 		int blockNumber = curr_block_num;
@@ -344,7 +285,6 @@ static int fs_unlink(const char *name) {
 		}
 
 		// 3) delete data node
-		// TODO: file's index nodes if it has more than 1 data node
 		int data_blockNumber = memory[blockNumber].content.fd.block_ref;
 		int data_bitvector_index = data_blockNumber / 8;
 		int data_bitvector_offset = data_blockNumber % 8;
@@ -379,7 +319,6 @@ static int fs_rmdir(const char *name) {
 	}
 	if (found) {
 		// Delete it:
-
 		// set index in bitvector to 0
 		int blockNumber = curr_block_num;
 		int bitvector_index = blockNumber / 8;
@@ -463,13 +402,7 @@ static int fs_rmdir(const char *name) {
 }
 
 static int fs_getattr(const char *name, struct stat *st) {
-	printf("GET_ATTR\n");
-	log_msg("test fs_getattr for file %s\n", name);
-	uid_t uid = fuse_get_context()->uid;
-	log_msg("current uid = %d\n", uid);
-
-	// char fpath[PATH_MAX];
- 	// fs_fullpath(fpath, name);
+	log_msg("FS_GETATTR FOR FILE %s\n", name);
     
     int i;
 	int curr_block_num;
@@ -495,7 +428,6 @@ static int fs_getattr(const char *name, struct stat *st) {
 		st->st_atime = memory[curr_block_num].content.fd.access_t;
 		st->st_mtime = memory[curr_block_num].content.fd.mod_t;
 		st->st_ctime = memory[curr_block_num].content.fd.creat_t;
-		// int retstat = log_syscall("lstat", lstat(fpath, st), 0);
 		log_stat(st);
 		return 0;
 	}
@@ -507,7 +439,6 @@ static int fs_getattr(const char *name, struct stat *st) {
 static int fs_open(const char *path, struct fuse_file_info *fi) {
 	log_msg("test %s\n", "fs_open");
 	if((fi->flags & O_RDONLY) != O_RDONLY) {
-		printf("GG. %d\n", fi->flags);
  	 		return -EACCES;
  	}
   	
@@ -517,7 +448,20 @@ static int fs_open(const char *path, struct fuse_file_info *fi) {
 	    path, fi);
     fs_fullpath(fpath, path);
     // If file is not in open global file table, add it to the table
-    int block_num = FS_DATA->block_num;
+    int i;
+    int found = 0;
+    int block_num;
+    for (i = 1; i < INDEX_SIZE; i++) {
+    	block_num = memory[working_dir].content.index[i];
+    	if (strcmp(memory[block_num].content.fd.name, path) == 0) {
+    		found = 1;
+    	}
+    }
+    if (!found) {
+    	log_msg("ERROR. FILE %s NOT FOUND IN WORKING DIR!!\n", path);
+    }
+
+
     int global_table_entry_num = getslot(block_num);
     log_msg("global_table[%d].fd = %d\n", global_table_entry_num, global_table[global_table_entry_num].fd);
     if (global_table[global_table_entry_num].fd == 0) {
@@ -526,15 +470,18 @@ static int fs_open(const char *path, struct fuse_file_info *fi) {
     	global_table[global_table_entry_num].data = memory[block_num].content.fd.block_ref;
     	global_table[global_table_entry_num].access = memory[block_num].content.fd.access;
     	global_table[global_table_entry_num].size = memory[block_num].content.fd.size;
-    	global_table[global_table_entry_num].reference_count = 0;
+    	global_table[global_table_entry_num].reference_count = 1;
+    }
+    else {
+    	// file is in global table. increment reference count
+    	global_table[global_table_entry_num].reference_count += 1;
+    	log_msg("FILE %s EXISTS IN GLOBAL TABLE. INCREMENTING REFERNCE COUNT TO %d", global_table[global_table_entry_num].reference_count);
     }
     int pid = fuse_get_context()->pid;
     log_msg("PROCESS ID is %d\n", pid);
     // add file to local table
-    int i;
-    int found = 0;
+    found = 0;
     for (i = 0; i < MAX_OPEN_FILES_PER_PROCESS && !found; i++) {
-    	// printf("local_table[%d].global_ref = %d\n", i, local_table[i].global_ref);
     	if (local_table[i].global_ref == 0) {
     		found = 1;
     		local_table[i].global_ref = global_table_entry_num;
@@ -547,20 +494,9 @@ static int fs_open(const char *path, struct fuse_file_info *fi) {
     	FS_DATA->block_num = 0;
     	return -ENOSPC;
     }
-
-    // if the open call succeeds, my retstat is the file descriptor,
-    // else it's -errno.  I'm making sure that in that case the saved
-    // file descriptor is exactly -1.
-    // int retstat = 0;
-    // int fd;
-    // fd = open(fpath, fi->flags);
- 	//   if (fd < 0)
-	// retstat = log_error("open");
-  	//   fi->fh = fd;
- 	//   log_fi(fi);
-    FS_DATA->block_num = 0;
-
-	return 0;
+    else {
+    	return 0;
+    }
 }
 
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
@@ -578,27 +514,6 @@ off_t offset, struct fuse_file_info *fi) {
 	 		filler(buf, memory[curr_block_num].content.fd.name + 1, NULL, 0);
 	 	}
 	 }
-
-	 // printf("\n%2s FILE INFORMATION:\n", "");
-	// printf("%2s %-25s ", "", "Type:");
-	// if (memory[blockNumber].type == DIR)
-	// 	printf("DIR\n");
-	// else
-	// 	printf("FILE\n");
-	// printf("%2s %-25s %-25s\n", "", "Name:", memory[blockNumber].content.fd.name);
-	// struct tm *create = localtime(&(memory[blockNumber].content.fd.creat_t));
- //    char s[64];
- //    strftime(s, sizeof(s), "%c", create);
- //    printf("%2s %-25s %-20s\n", "", "Create time:", s);
- //    struct tm *access = localtime(&(memory[blockNumber].content.fd.access_t));
- //    strftime(s, sizeof(s), "%c", access);
- //    printf("%2s %-25s %-20s\n", "", "Last access time:", s);
- //    struct tm *mod = localtime(&(memory[blockNumber].content.fd.mod_t));
- //    strftime(s, sizeof(s), "%c", mod);
- //    printf("%2s %-25s %-20s\n", "", "Last modification time:", s);
- //    printf("%2s %-25s %-20d\n", "", "Access rights:", memory[blockNumber].content.fd.access); 
- //    printf("%2s %-25s %-20d\n", "", "Owner:", memory[blockNumber].content.fd.owner);
-
 	return 0;
 }
 
@@ -606,7 +521,6 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 struct fuse_file_info *fi) {
 	log_msg("\nfs_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
 	    path, buf, size, offset, fi);
-	// TODO: actually copy the data string from the file into the buf
 	(void) fi;
 	int i;
     int found = 0;
@@ -615,75 +529,28 @@ struct fuse_file_info *fi) {
     	block_num = memory[working_dir].content.index[i];
     	if (block_num > 0 && memory[block_num].type == FIL && strcmp(memory[block_num].content.fd.name, path) == 0) {
     		found = 1;
-    		printf("FOUND file %s in block %d\n", path, block_num);
+    		log_msg("FOUND FILE %s IN BLOCK %d\n", path, block_num);
     	}
     }
     if (found) {
     	int data_node = memory[block_num].content.fd.block_ref;
-    	printf("memory[%d].content.data = %s\n", data_node, memory[data_node].content.data);
-    	strcpy(memory[data_node].content.data, "test_data");
-    	
-    	printf("memory[%d].content.data = %s\n", data_node, memory[data_node].content.data);
-    	int len = strlen(memory[data_node].content.data);
+    	int len = memory[block_num].content.fd.size;
     	len +=1;
+    	memory[data_node].content.data[len-1] = '\n';
     	memcpy(buf, memory[data_node].content.data + offset, len);	
-    	// memory[data_node].content.data[len-2] = '\n';
-    	// memory[data_node].content.data[len-1] = '\n';
-    	buf[len-1] = '\n';
-    	printf("buf = %s\n", buf);
     	return strlen(memory[data_node].content.data);
     }
-//     unique: 240, opcode: LOOKUP (1), nodeid: 1, insize: 51, pid: 6189
-// LOOKUP /first_file
-// getattr /first_file
-// GETATTR
-//    NODEID: 2
-//    unique: 240, success, outsize: 144
-// unique: 241, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 6189
-// open flags: 0x8000 /first_file
-// OPEN
-//    open[0] flags: 0x8000 /first_file
-//    unique: 241, success, outsize: 32
-// unique: 242, opcode: READ (15), nodeid: 2, insize: 80, pid: 6189
-// read[0] 4096 bytes from 0 flags: 0x8000
-// READ
-//    read[0] 13 bytes from 0
-//    unique: 242, success, outsize: 29
-// unique: 243, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 6189
-// getattr /first_file
-// GETATTR
-//    unique: 243, success, outsize: 120
-// unique: 244, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
-//    unique: 244, success, outsize: 16
-
-
-    // char test[100] = "TEST REEEEEAD";
-    // printf("test = %s\n", test);
-    // memcpy(buf, test, 100);
-    // printf("buf = %s\n", buf);
-
-	// if(strcmp(path, hello_path) == 0) {
-	//     len = strlen(hello_str);
-	//     if (offset < len) {
-	// 	    if (offset + size > len)
-	// 	    	size = len - offset;
-	// 	    memcpy(buf, hello_str + offset, size);
-	//     }
-	//     else
-	//     	size = 0;
-	// }
-	return size;
+    else {
+		return size;
+	}
 }
 
 static int fs_write(const char *path, const char *buf, size_t size, off_t offset,
 	     struct fuse_file_info *fi) {
-    // if ((fi->flags & O_WRONLY) != O_WRONLY) {
-    // 	log_msg("ERROR. FILE %s DOES NOT HAVE WRITE ACCESS\n", path);
-    // 	return -EACCES;
-    // }
-    log_msg("\nfs_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
-	    path, buf, size, offset, fi);
-    // find file block number
+    if ((fi->flags & O_WRONLY) != O_WRONLY) {
+    	log_msg("ERROR. FILE %s DOES NOT HAVE WRITE ACCESS\n", path);
+    	return -EACCES;
+    }
     int i;
     int found = 0;
     int block_num;
@@ -694,37 +561,58 @@ static int fs_write(const char *path, const char *buf, size_t size, off_t offset
     	}
     }
     if (found) {
-    	memory[block_num].content.fd.size = size;
+    	memory[block_num].content.fd.size = strlen(buf) + 1;
     	int data_block_num = memory[block_num].content.fd.block_ref;
-    	memcpy(memory[data_block_num].content.data, buf, size);
+    	strcpy(memory[data_block_num].content.data, buf);
+    	log_msg("COPYING BUF = <%s> to %s\n", buf, path);
     }
     else {
-    	printf("WRITE FILE NOT FOUND\n");
+    	log_msg("WRITE FILE NOT FOUND\n");
     }
-   
-    printf("COPYING BUF = <%s> to %s\n", buf, path);
-    
+
     return size;
 }
 
-// static int fs_flush(const char *a, struct fuse_file_info *b) {
-// 	printf("FLUSH = %s\n", a);
-// 	return 0;
-// }
+static int fs_flush(const char *path, struct fuse_file_info *b) {
+	log_msg("FLUSHING FILE: %s\n", path);
+	// find file in working dir
+	int i;
+    int found = 0;
+    int block_num;
+    for (i = 0; i < INDEX_SIZE && !found; i++) {
+    	block_num = memory[working_dir].content.index[i];
+    	if (block_num > 0 && strcmp(memory[block_num].content.fd.name, path) == 0) {
+    		found = 1;
+    	}
+    }
 
-// static int fs_truncate(const char *a, off_t b) {
-// 	return 0;
-// }
+	// check for file in local file table
+    found = 0;
+    for (i = 0; i < MAX_OPEN_FILES_PER_PROCESS && !found; i++) {
+    	int global_table_entry_num = local_table[i].global_ref;
+    	int memory_location = global_table[global_table_entry_num].fd;
+    	if (strcmp(memory[memory_location].content.fd.name, path) == 0) {
+    		found = 1;
+    		// remove file local file table
+    		local_table[i].global_ref = 0;
+    		// if file's reference count in global table is > 0, decrement the count
+    		int ref_count = global_table[global_table_entry_num].reference_count;
+    		if (ref_count > 0) {
+    			ref_count -= 1;
+    			global_table[global_table_entry_num].reference_count = ref_count;
+    			log_msg("DECREMENTED REFERENCE COUNT OF %s IN GLOBAL TABLE TO %d\n", path, ref_count);
+    		}
+    	}
+    }
 
-// static int fs_ftruncate(const char *a, off_t b, struct fuse_file_info *c) {
-// 	return 0;
-// }
+	return 0;
+}
 
-// static int fs_opendir(const char *a, struct fuse_file_info *b) {
-// 	log_msg("OPENDIR FUNCTION. Opening dir %s\n", a);
-	
-// 	return 0;
-// }
+static int fs_release(const char *path, struct fuse_file_info *b) {
+	log_msg("RELEASING FILE: %s\n", path);
+	// remove file from memory array
+	return 0;
+}
 
 static struct fuse_operations fuse_ops = {
  .getattr = fs_getattr,
@@ -736,19 +624,12 @@ static struct fuse_operations fuse_ops = {
  .open = fs_open,
  .readdir = fs_readdir,
  .read = fs_read,
- // .flush = fs_flush,
- // .truncate = fs_truncate,
- // .ftruncate = fs_ftruncate,
- // .opendir = fs_opendir,
  .write = fs_write,
+ .release = fs_release,
+ .flush = fs_flush,
 };
 
 int main(int argc, char *argv[]) {
-	// int num_of_blocks = 256; // 2^8
-	// unsigned char *bitvector;
-	// int bitvector_len = num_of_blocks / 8;
-	// NODE *memory;
-	// init(&memory, &bitvector, num_of_blocks);
 	if (argc < 3) {
 		printf("Usage: t4 rootdir mountdir\n");
 		exit(-1);
@@ -765,33 +646,7 @@ int main(int argc, char *argv[]) {
 	
 	fs_data->logfile = log_open();
 	
-
-	
-
-
-
 	return fuse_main(argc, argv, &fuse_ops, fs_data);
-
-	// int file1 = create_file(memory, bitvector, bitvector_len, "file1", 0);
-	// int file2 = create_file(memory, bitvector, bitvector_len, "file2", 0);
-	// int file3 = create_file(memory, bitvector, bitvector_len, "file3", 0);
-
-	// int dir1 = create_dir(memory, bitvector, bitvector_len, "dir1", 0);
-	// int dir2 = create_dir(memory, bitvector, bitvector_len, "dir2", 0);
-	// int dir3 = create_dir(memory, bitvector, bitvector_len, "dir3", 0);
-	// int dir4 = create_dir(memory, bitvector, bitvector_len, "dir4", 0);
-	// int dir5 = create_dir(memory, bitvector, bitvector_len, "dir5", 0);
-	// int dir6 = create_dir(memory, bitvector, bitvector_len, "dir6", 0);
-
-	// fs_getattr(memory, bitvector, bitvector_len, "", file1);
-	// fs_unlink(memory, bitvector, bitvector_len, "", file1);
-	// fs_getattr(memory, bitvector, bitvector_len, "", file1);
-
-	// int file4 = create_file(memory, bitvector, bitvector_len, "file4", 0);
-	// int dir7 = create_dir(memory, bitvector, bitvector_len, "dir7", 0);
-	// fs_getattr(memory, bitvector, bitvector_len, "", dir7);
-	// fs_rmdir(memory, bitvector, bitvector_len, "", dir7);
-	// fs_getattr(memory, bitvector, bitvector_len, "", dir7);
 
 	free(memory);
     return 0;
