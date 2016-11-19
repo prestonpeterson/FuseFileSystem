@@ -1,0 +1,1258 @@
+test init
+Initializing memory and superblock...
+    conn:
+    proto_major = 7
+    proto_minor = 23
+    async_read = 1
+    max_write = 131072
+    max_readahead = 131072
+    capable = 00000ffb
+    want = 00000010
+    max_background = 0
+    congestion_threshold = 0
+current uid = 0
+    context:
+    fuse = 0111c4f0
+    uid = 0
+    gid = 0
+    pid = 0
+    private_data = 0111b010
+    logfile = 0111c040
+    rootdir = /home/cistudent/Documents/comp362/project1/t5/dir
+    umask = 00000
+Initialization complete
+FS_GETATTR FOR FILE /.xdg-volume-info
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /autorun.inf
+FS_GETATTR FOR FILE /.Trash
+FS_GETATTR FOR FILE /.Trash-1001
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /autorun.inf
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /a
+test create_file
+Created file "/a" in block 2 with data node in block 3. bitvector[0] offset 2
+
+fs_mknod(path="/a", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/a", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/a"
+FS_GETATTR FOR FILE /a
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb26
+    st_mtime = 0x582fcb26
+    st_ctime = 0x582fcb26
+test fs_open
+
+fs_open(path"/a", fi=0x8a383d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/a", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/a"
+global_table[0].fd = 0
+PROCESS ID is 4231
+FLUSHING FILE: /a
+FLUSHING FILE: /a
+RELEASING FILE: /a
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /b
+test create_dir
+
+fs_mkdir(path="/b", mode=0775)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/b", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/b"
+working_dir = 1
+Created directory "/b" in block 4 with index node in block 5. bitvector[0] offset 4
+FS_GETATTR FOR FILE /b
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040775
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb27
+    st_mtime = 0x582fcb27
+    st_ctime = 0x582fcb27
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+found item: /a
+found item: /b
+FS_GETATTR FOR FILE /a
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb26
+    st_mtime = 0x582fcb26
+    st_ctime = 0x582fcb26
+FS_GETATTR FOR FILE /b
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040775
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb27
+    st_mtime = 0x582fcb27
+    st_ctime = 0x582fcb27
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /b
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040775
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb27
+    st_mtime = 0x582fcb27
+    st_ctime = 0x582fcb27
+FS_RMDIR ON DIR /b
+FOUND DIR IN WORKING DIR AT INDEX 4
+DIR IS A FIRST-LEVEL PARENT
+DIR'S PARENT IS IN BLOCK 1
+FOUND DIR'S INDEX IN PARENT DIRECTORY: 3
+Deleted directory "/b" in block 4 and bitvector[0] offset 5
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+found item: /a
+FS_GETATTR FOR FILE /a
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb26
+    st_mtime = 0x582fcb26
+    st_ctime = 0x582fcb26
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /a
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb26
+    st_mtime = 0x582fcb26
+    st_ctime = 0x582fcb26
+test fs_unlink
+Deleted file "/a" in block 2 with data node in block 3. bitvector[0] offset 2
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /c
+test create_file
+Created file "/c" in block 2 with data node in block 3. bitvector[0] offset 2
+
+fs_mknod(path="/c", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+test fs_open
+
+fs_open(path"/c", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+global_table[0].fd = 0
+PROCESS ID is 4240
+FLUSHING FILE: /c
+FLUSHING FILE: /c
+RELEASING FILE: /c
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+test fs_open
+
+fs_open(path"/c", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+global_table[0].fd = 0
+PROCESS ID is 4241
+
+fs_read(path="/c", buf=0x84012520, size=4096, offset=0, fi=0x8a383d40)
+FOUND FILE /c IN BLOCK 2
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+
+fs_read(path="/c", buf=0x84012520, size=4096, offset=0, fi=0x8a383d40)
+FOUND FILE /c IN BLOCK 2
+FLUSHING FILE: /c
+RELEASING FILE: /c
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+test fs_open
+
+fs_open(path"/c", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+global_table[0].fd = 0
+PROCESS ID is 4242
+FS_GETATTR FOR FILE /.c.swp
+FS_GETATTR FOR FILE /.c.swp
+test create_file
+Created file "/.c.swp" in block 4 with data node in block 5. bitvector[0] offset 4
+
+fs_mknod(path="/.c.swp", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/.c.swp", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/.c.swp"
+FS_GETATTR FOR FILE /.c.swp
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb3b
+    st_mtime = 0x582fcb3b
+    st_ctime = 0x582fcb3b
+test fs_open
+
+fs_open(path"/.c.swp", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/.c.swp", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/.c.swp"
+global_table[0].fd = 0
+PROCESS ID is 4242
+FS_GETATTR FOR FILE /.c.swpx
+FS_GETATTR FOR FILE /.c.swpx
+test create_file
+Created file "/.c.swpx" in block 6 with data node in block 7. bitvector[0] offset 6
+
+fs_mknod(path="/.c.swpx", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/.c.swpx", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/.c.swpx"
+FS_GETATTR FOR FILE /.c.swpx
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb3b
+    st_mtime = 0x582fcb3b
+    st_ctime = 0x582fcb3b
+test fs_open
+
+fs_open(path"/.c.swpx", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/.c.swpx", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/.c.swpx"
+global_table[0].fd = 0
+PROCESS ID is 4242
+FLUSHING FILE: /.c.swpx
+RELEASING FILE: /.c.swpx
+test fs_unlink
+Deleted file "/.c.swpx" in block 6 with data node in block 7. bitvector[0] offset 6
+FLUSHING FILE: /.c.swp
+RELEASING FILE: /.c.swp
+test fs_unlink
+Deleted file "/.c.swp" in block 4 with data node in block 5. bitvector[0] offset 4
+FS_GETATTR FOR FILE /.c.swp
+FS_GETATTR FOR FILE /.c.swp
+FS_GETATTR FOR FILE /.c.swp
+FS_GETATTR FOR FILE /.c.swp
+test create_file
+Created file "/.c.swp" in block 4 with data node in block 5. bitvector[0] offset 4
+
+fs_mknod(path="/.c.swp", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/.c.swp", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/.c.swp"
+FS_GETATTR FOR FILE /.c.swp
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb3b
+    st_mtime = 0x582fcb3b
+    st_ctime = 0x582fcb3b
+test fs_open
+
+fs_open(path"/.c.swp", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/.c.swp", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/.c.swp"
+global_table[0].fd = 0
+PROCESS ID is 4242
+ERROR. FILE /.c.swp DOES NOT HAVE WRITE ACCESS
+FLUSHING FILE: /.c.swp
+RELEASING FILE: /.c.swp
+test fs_unlink
+Deleted file "/.c.swp" in block 4 with data node in block 5. bitvector[0] offset 4
+FLUSHING FILE: /c
+RELEASING FILE: /c
+test fs_open
+
+fs_open(path"/c", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+global_table[0].fd = 0
+PROCESS ID is 4242
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+
+fs_read(path="/c", buf=0x7c000af0, size=4096, offset=0, fi=0x89b82d40)
+FOUND FILE /c IN BLOCK 2
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+
+fs_read(path="/c", buf=0x7c000af0, size=4096, offset=0, fi=0x89b82d40)
+FOUND FILE /c IN BLOCK 2
+FLUSHING FILE: /c
+RELEASING FILE: /c
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+FS_GETATTR FOR FILE /4913
+FS_GETATTR FOR FILE /4913
+test create_file
+Created file "/4913" in block 4 with data node in block 5. bitvector[0] offset 4
+
+fs_mknod(path="/4913", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/4913", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/4913"
+FS_GETATTR FOR FILE /4913
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+test fs_open
+
+fs_open(path"/4913", fi=0x8a383d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/4913", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/4913"
+global_table[0].fd = 0
+PROCESS ID is 4242
+FLUSHING FILE: /4913
+RELEASING FILE: /4913
+test fs_unlink
+Deleted file "/4913" in block 4 with data node in block 5. bitvector[0] offset 4
+FS_GETATTR FOR FILE /c~
+FS_GETATTR FOR FILE /c~
+FS_GETATTR FOR FILE /c~
+FS_GETATTR FOR FILE /c~
+test fs_open
+
+fs_open(path"/c", fi=0x8a383d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+global_table[0].fd = 0
+PROCESS ID is 4242
+FS_GETATTR FOR FILE /c~
+test create_file
+Created file "/c~" in block 4 with data node in block 5. bitvector[0] offset 4
+
+fs_mknod(path="/c~", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c~", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c~"
+FS_GETATTR FOR FILE /c~
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+test fs_open
+
+fs_open(path"/c~", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c~", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c~"
+global_table[0].fd = 0
+PROCESS ID is 4242
+
+fs_read(path="/c", buf=0x84012520, size=4096, offset=0, fi=0x8a383d40)
+FOUND FILE /c IN BLOCK 2
+COPYING BUF = <
+> to /c~
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb38
+    st_mtime = 0x582fcb38
+    st_ctime = 0x582fcb38
+FLUSHING FILE: /c
+RELEASING FILE: /c
+FLUSHING FILE: /c~
+RELEASING FILE: /c~
+test fs_unlink
+Deleted file "/c" in block 2 with data node in block 3. bitvector[0] offset 2
+FS_GETATTR FOR FILE /c
+test create_file
+Created file "/c" in block 2 with data node in block 3. bitvector[0] offset 2
+
+fs_mknod(path="/c", mode=0100777, dev=0)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+test fs_open
+
+fs_open(path"/c", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+global_table[0].fd = 0
+PROCESS ID is 4242
+COPYING BUF = <This is now the content of file c!
+nt> to /c
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+FLUSHING FILE: /c
+FS_GETATTR FOR FILE /4913
+RELEASING FILE: /c
+FS_GETATTR FOR FILE /4913
+FS_GETATTR FOR FILE /c~
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+test fs_unlink
+Deleted file "/c~" in block 4 with data node in block 5. bitvector[0] offset 4
+FS_GETATTR FOR FILE /c~
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+found item: /c
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+test fs_open
+
+fs_open(path"/c", fi=0x89b82d40)
+    fs_fullpath:  rootdir = "/home/cistudent/Documents/comp362/project1/t5/dir", path = "/c", fpath = "/home/cistudent/Documents/comp362/project1/t5/dir/c"
+global_table[0].fd = 0
+PROCESS ID is 4244
+
+fs_read(path="/c", buf=0x84012520, size=4096, offset=0, fi=0x8a383d40)
+FOUND FILE /c IN BLOCK 2
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+
+fs_read(path="/c", buf=0x84012520, size=4096, offset=0, fi=0x8a383d40)
+FOUND FILE /c IN BLOCK 2
+FLUSHING FILE: /c
+RELEASING FILE: /c
+FS_GETATTR FOR FILE /c
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 0100777
+    st_nlink = 0
+    st_uid = 1001
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x582fcb4a
+    st_mtime = 0x582fcb4a
+    st_ctime = 0x582fcb4a
+test fs_unlink
+Deleted file "/c" in block 2 with data node in block 3. bitvector[0] offset 2
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+test fs_readdir for path /
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+FS_GETATTR FOR FILE /
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 040755
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 100
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
